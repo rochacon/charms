@@ -1,0 +1,5 @@
+options:
+  port:
+    default: "8000"
+    type: string
+    description: "Port to listen to"

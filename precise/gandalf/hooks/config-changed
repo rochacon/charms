@@ -1,0 +1,12 @@
+#!/bin/bash
+dbhost=$(relation-get private-address)
+dbport=$(relation-get port)
+
+sudo j2 templates/gandalf.conf -e "db={'host': '$dbhost', 'port': '$dbport'}" -o /etc/gandalf.conf
+sudo j2 templates/gandalf-webserver.conf -e "" -o /etc/init/gandalf-webserver.conf
+sudo j2 templates/git-daemon.conf -e "" -o /etc/init/git-daemon.conf
+
+open-port $(config-get port)/tcp
+
+./hooks/restart
+

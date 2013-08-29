@@ -1,0 +1,10 @@
+name: gandalf
+maintainer: Rodrigo Chacon <rochacon@gmail.com>
+summary: Gandalf is a REST API to manage git repositories.
+description: |
+  Gandalf is a REST API written in Go to manage git repositories, users and provide access to them over SSH.
+categories:
+  - applications
+requires:
+  database:
+    interface: mongodb

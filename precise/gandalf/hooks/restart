@@ -1,0 +1,3 @@
+#!/bin/bash
+hooks/stop
+hooks/start

@@ -1,0 +1,19 @@
+#!/bin/bash
+sudo apt-get update -y
+
+# Dependencies
+sudo apt-get install -yq git python-pip
+sudo pip install j2
+
+# Gandalf - git wrapper
+curl -sL https://s3.amazonaws.com/tsuru/dist-server/gandalf-bin.tar.gz | sudo tar -xz -C /usr/local/bin
+
+# Gandalf - API
+curl -sL https://s3.amazonaws.com/tsuru/dist-server/gandalf-webserver.tar.gz | sudo tar -xz -C /usr/local/bin
+
+# Create git user
+useradd --create-home git
+sudo -u git mkdir /home/git/.ssh
+sudo chown git:git /home/git/.ssh
+sudo chmod 0700 /home/git/.ssh
+
