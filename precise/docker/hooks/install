@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+# Install dependencies
+sudo apt-get update
+sudo apt-get install -yqq linux-image-extra-`uname -r` lxc wget bsdtar curl
+
+# Download Docker
+wget -c http://get.docker.io/builds/$(uname -s)/$(uname -m)/docker-master.tgz
+tar -xf docker-master.tgz
+
+# Install and configure Upstart
+sudo cp docker-master/docker /usr/local/bin/docker
+echo "exec /usr/local/bin/docker -d" | sudo tee /etc/init/dockerd.conf
+

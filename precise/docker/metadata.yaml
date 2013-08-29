@@ -1,0 +1,6 @@
+name: docker
+maintainer: Rodrigo Chacon <rochacon@gmail.com>
+summary: Docker - the Linux container runtime 
+description: |
+    Docker encapsulates heterogeneous payloads in standard containers
+
