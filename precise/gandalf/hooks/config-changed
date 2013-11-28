@@ -1,12 +1,22 @@
-#!/bin/bash
-dbhost=$(relation-get private-address)
-dbport=$(relation-get port)
+#!/usr/bin/env python
+import yaml
+import subprocess
 
-sudo j2 templates/gandalf.conf -e "db={'host': '$dbhost', 'port': '$dbport'}" -o /etc/gandalf.conf
-sudo j2 templates/gandalf-webserver.conf -e "" -o /etc/init/gandalf-webserver.conf
-sudo j2 templates/git-daemon.conf -e "" -o /etc/init/git-daemon.conf
 
-open-port $(config-get port)/tcp
+def sh(*args):
+    return subprocess.check_output(*args).strip()
 
-./hooks/restart
+
+bind = sh('config-get bind')
+
+with open('/etc/gandalf.conf') as fp:
+    conf = yaml.load(fp)
+
+conf['bind'] = bind
+
+with open('/etc/gandalf.conf', 'wb') as fp:
+    yaml.dump(conf, fp)
+
+sh('open-port %s/tcp' % bind.split(':')[1])
+sh('./hooks/restart')
 

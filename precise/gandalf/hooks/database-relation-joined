@@ -1,1 +1,31 @@
-config-changed
+#!/usr/bin/env python
+import yaml
+import subprocess
+
+
+def sh(args):
+    return subprocess.check_output(args.split()).strip()
+
+
+hostname = sh('relation-get hostname')
+port = sh('relation-get port')
+
+if not hostname or not port:
+    sh('juju-log hostname or port not found')
+    sys.exit(1)
+
+with open('/etc/gandalf.conf') as fp:
+    conf = yaml.load(fp)
+
+conf.update({
+    'database': {
+        'name': 'gandalf',
+        'url': '%s:%s' % (hostname, port)
+    }
+})
+
+with open('/etc/gandalf.conf', 'wb') as fp:
+    yaml.dump(conf, fp)
+
+sh('./hooks/restart')
+

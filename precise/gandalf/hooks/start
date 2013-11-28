@@ -1,3 +1,3 @@
 #!/bin/bash
-sudo start gandalf-webserver
+sudo start gandalf-server
 sudo start git-daemon
