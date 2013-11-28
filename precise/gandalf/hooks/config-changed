@@ -6,13 +6,14 @@ import subprocess
 def sh(*args):
     return subprocess.check_output(*args).strip()
 
-
 bind = sh('config-get bind')
+host = sh('config-get host')
 
 with open('/etc/gandalf.conf') as fp:
     conf = yaml.load(fp)
 
 conf['bind'] = bind
+conf['host'] = host
 
 with open('/etc/gandalf.conf', 'wb') as fp:
     yaml.dump(conf, fp)

@@ -3,3 +3,7 @@ options:
     default: "0.0.0.0:8000"
     type: string
     description: "Address the HTTP server will bind to"
+  host:
+    default: "localhost"
+    type: string
+    description: "Hostname used to compose the remote URL"
