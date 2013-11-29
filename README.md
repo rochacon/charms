@@ -1,2 +1,2 @@
-JuJu Charms for my projects
-===========================
+JuJu Charms playground
+======================
