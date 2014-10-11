@@ -3,8 +3,9 @@ import yaml
 import subprocess
 
 
-def sh(*args):
-    return subprocess.check_output(*args).strip()
+def sh(cmd):
+    return subprocess.check_output(cmd.split()).strip()
+
 
 bind = sh('config-get bind')
 host = sh('config-get host')
@@ -16,7 +17,7 @@ conf['bind'] = bind
 conf['host'] = host
 
 with open('/etc/gandalf.conf', 'wb') as fp:
-    yaml.dump(conf, fp)
+    yaml.dump(conf, fp, default_flow_style=False)
 
 sh('open-port %s/tcp' % bind.split(':')[1])
 sh('./hooks/restart')

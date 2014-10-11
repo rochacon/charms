@@ -1,0 +1,3 @@
+#!/bin/bash
+service gandalf-server stop
+service git-daemon stop

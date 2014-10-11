@@ -5,6 +5,9 @@ description: |
   Gandalf is a REST API written in Go to manage git repositories, users and provide access to them over SSH.
 categories:
   - applications
+provides:
+  api:
+    interface: http
 requires:
   database:
     interface: mongodb

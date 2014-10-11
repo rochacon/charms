@@ -1,0 +1,3 @@
+#!/bin/bash
+service gandalf-server start
+service git-daemon start

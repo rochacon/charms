@@ -1,3 +1,0 @@
-#!/bin/bash
-sudo stop gandalf-server
-sudo stop git-daemon

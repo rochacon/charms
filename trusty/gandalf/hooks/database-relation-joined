@@ -3,8 +3,8 @@ import yaml
 import subprocess
 
 
-def sh(args):
-    return subprocess.check_output(args.split()).strip()
+def sh(cmd):
+    return subprocess.check_output(cmd.split()).strip()
 
 
 hostname = sh('relation-get hostname')
@@ -25,7 +25,7 @@ conf.update({
 })
 
 with open('/etc/gandalf.conf', 'wb') as fp:
-    yaml.dump(conf, fp)
+    yaml.dump(conf, fp, default_flow_style=False)
 
 sh('./hooks/restart')
 

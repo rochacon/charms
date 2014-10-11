@@ -1,0 +1,10 @@
+#!/bin/bash
+apt-add-repository -y ppa:tsuru/ppa
+apt-get update -y
+apt-get install -y gandalf-server
+
+# Create git user
+useradd --create-home git
+mkdir -p /home/git/.ssh
+chown git:git /home/git/.ssh
+chmod 0700 /home/git/.ssh
